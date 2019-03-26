@@ -28,3 +28,16 @@ function CreateStack (exp){
 function randomize (QuantidadeExp){
     return Math.floor((Math.random() * QuantidadeExp) + 1);
 };
+function UpperCase (stack){
+    var res;
+    var st = [];
+
+    for (let i = 0; i < stack.length; i++) {
+        st = stack.pop();
+        if ((st.charCodeAt(0) >= 65) && (st.charCodeAt(0) <= 90)){
+            res = true;
+        }
+    }
+
+    return res;
+}
