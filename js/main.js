@@ -21,7 +21,7 @@ $(document).ready(function() {
     st = CreateStack(data[0][randomize(nt.length)]);
 
 
-    while (UpperCase(st)) {
+    while (UpperCase(st[st.length-1])) {
             aux = st.pop();
             if ((aux.charCodeAt(0) >= 65) && (aux.charCodeAt(0) <= 90)){
                 for(var j = 0; j <= data.length-1; j++){
