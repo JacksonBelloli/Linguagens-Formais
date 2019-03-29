@@ -1,9 +1,9 @@
 function CatchGram (exp){
-    var nt = [];
+    var gram = [];
 
-    nt = exp.split(':');
+    gram = exp.split(':');
 
-    return nt;
+    return gram;
 };
 function CatchExps (exp){
 
@@ -28,11 +28,14 @@ function CreateStack (exp){
 function randomize (QuantidadeExp){
     return Math.floor((Math.random() * QuantidadeExp) + 1);
 };
-function UpperCase (letter){
-    var st;
-        st = letter;
-        if ((st.charCodeAt(0) >= 65) && (st.charCodeAt(0) <= 90)){
-            return true;
+function nonTerminal (gram){
+    var st = [];
+    var res = [];
+        st = gram.split('');
+        for (let i = 0; i < st.length; i++){
+            if ((st[i].charCodeAt(0) >= 65) && (st[i].charCodeAt(0) <= 90)){
+                res.push(st[i]);
+            }
         }
-    return false;
+    return res;
 }

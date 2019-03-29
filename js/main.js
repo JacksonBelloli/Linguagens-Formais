@@ -1,68 +1,65 @@
 $(document).ready(function() {
-    const gram = 'S:aSb|ab';
+    var gram = 'S:aSb|ab';
     
-    var nt = [];
+    var nt = ['S'];
+    var sp = [];
     var cond = true;
     var aux;
     var ArrAux = [];
-    var res;
-    var tam;
-
-    nt = CatchGram(gram);
-
-    let data = new Array([nt[0]]);
-
-    nt = CatchExps(nt[1]);
-    for (var i = 0; i <= nt.length-1; i++){
-        data [0].push(nt[i]);
-    }
-    let st = [];
-
-    st = CreateStack(data[0][randomize(nt.length)]);
+    var res = '';
+    var data = [];
 
 
-    while (UpperCase(st[st.length-1])) {
-            aux = st.pop();
-            if ((aux.charCodeAt(0) >= 65) && (aux.charCodeAt(0) <= 90)){
-                for(var j = 0; j <= data.length-1; j++){
-                    if(aux == data[j][0]){
-                        ArrAux = CreateStack(data[j][randomize(data[j].length-1)]);                        
-                    }
-                }
-                for (var z = 0; z <= ArrAux.length-1; z++){
-                    st.push(ArrAux[z]);
-                }
-            }else{
-                res += aux;
-            }
-    }
-    alert(res);
+    for(let i = 0; i < nt.length; i++){
+        gram = prompt('Informe '+ nt[i] + ':');
 
-    /* var cond = true;
-    var nt = ['S'];
-    var exp = [];
-    var first = '';
-    var i = 0;
+        sp = CatchGram(gram);
 
-    while (cond) {
-        for (var index = 0; index <= nt.length-1; index++) {
-            //console.log(nt[index]);
-            first = prompt('Digite ' + nt[index] + ':');
-            exp = first.split('');
+        ArrAux.push(sp[0]);
+
+        sp = CatchExps(sp[1]);
+        for (let j = 0; j < sp.length; j++){
+            ArrAux.push(sp[j]);
         }
-        for (var index = 0; index <= exp.length-1; index++) {
-            if ((index == 0) || (index == 1)) {
+
+        data[i] = ArrAux;
+
+        ArrAux = [];
+
+        ArrAux = nonTerminal(gram);
+        for (let i = 0; i < ArrAux.length; i++){
+            if (nt.indexOf(ArrAux[i]) == -1){
+                nt.push(ArrAux[i]);
+            }else{
                 continue;
             }
-            if ((exp[index].charCodeAt(0) >= 65) && (exp[index].charCodeAt(0) <= 90)){                
-                nt [i] = exp[index];
+        }
+    }    
 
-                i++;
-            }else if (index == exp.length){
-                console.log('passou aqui!');
-                cond = false;
-                break;
+    ArrAux = [];
+    var st = [];
+
+    st = CreateStack(data[0][randomize(data[0].length-1)]);
+
+    while (cond) {
+        aux = st.pop();
+        if (aux == null){
+            cond = false;
+            continue;
+        }
+        if ((aux.charCodeAt(0) >= 65) && (aux.charCodeAt(0) <= 90)){
+            for(let j = 0; j <= data.length-1; j++){
+                if(data[j].indexOf(aux) == -1){
+                    ArrAux = CreateStack(data[j][randomize(data[j].length-1)]);                        
+                }
             }
-        }   
-    }*/
+            for (let z = 0; z <= ArrAux.length-1; z++){
+                st.push(ArrAux[z]);
+            }
+        }else{
+            res += aux;
+        }            
+    }
+    document.getElementById('result').innerHTML = res;
+    
 }); 
