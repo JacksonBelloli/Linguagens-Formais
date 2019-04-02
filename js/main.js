@@ -11,6 +11,8 @@ $(document).ready(function() {
 
 
     for(let i = 0; i < nt.length; i++){
+        ArrAux = [];
+        
         gram = prompt('Informe '+ nt[i] + ':');
 
         sp = CatchGram(gram);
@@ -41,6 +43,7 @@ $(document).ready(function() {
 
     st = CreateStack(data[0][randomize(data[0].length-1)]);
 
+
     while (cond) {
         aux = st.pop();
         if (aux == null){
@@ -48,12 +51,12 @@ $(document).ready(function() {
             continue;
         }
         if ((aux.charCodeAt(0) >= 65) && (aux.charCodeAt(0) <= 90)){
-            for(let j = 0; j <= data.length-1; j++){
-                if(data[j].indexOf(aux) == -1){
+            for(let j = 0; j < data.length; j++){
+                if(aux == data[j][0]){                    
                     ArrAux = CreateStack(data[j][randomize(data[j].length-1)]);                        
                 }
             }
-            for (let z = 0; z <= ArrAux.length-1; z++){
+            for (let z = 0; z < ArrAux.length; z++){
                 st.push(ArrAux[z]);
             }
         }else{

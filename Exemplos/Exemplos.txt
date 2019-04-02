@@ -1,0 +1,4 @@
+S:aSb|aB  B:ac|b;
+S:aB|aC  B:aS|bC  C:ab|bc;
+S:a|aSB B:b|S;
+S:fDs|gh  C:fS|cc  D:dbz|aC;
